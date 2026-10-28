@@ -79,16 +79,18 @@ jobs:
           name: docker-image
           path: ${{ env.IMAGE_NAME }}.tar
 
-      # Generar SBOM con sbomify (CycloneDX)
-      - name: Generar SBOM CycloneDX
-        uses: sbomify/github-action@master
-        env:
-          LOCK_FILE: requirements.txt
-          OUTPUT_FILE: sbom.cdx.json
-        continue-on-error: true
+      # Generar SBOM con Syft (CycloneDX) - Más confiable para Python
+      - name: Generar SBOM CycloneDX con Syft
+        uses: anchore/sbom-action@v0
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: sbom.cdx.json
+          upload-artifact: false # Nosotros lo subimos en el paso siguiente
 
       - name: Subir SBOM como artifact
         uses: actions/upload-artifact@v4
         with:
           name: sbom
           path: sbom.cdx.json
+          if-no-files-found: error # Fuerza a que falle si el archivo no se creó
