@@ -1,0 +1,84 @@
+name: CI/CD Pipeline - Proyecto 1
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  IMAGE_NAME: api-clientes
+
+jobs:
+  # ========== JOB 1: TEST + SEGURIDAD ==========
+  test-and-security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      # Test básico (aunque no tengas tests, crea uno mínimo)
+      - name: Ejecutar tests
+        run: pytest --cov=. --cov-report=xml || true
+
+      # SonarQube / SonarCloud (necesitás token en Secrets)
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: true
+
+      # Snyk para escanear dependencias
+      - name: Snyk Security Scan
+        uses: snyk/actions/python@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+        continue-on-error: true
+
+  # ========== JOB 2: BUILD + SBOM ==========
+  build-and-sbom:
+    needs: test-and-security
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Build imagen Docker
+        run: docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} .
+
+      # Guardar la imagen como artifact (formato tar)
+      - name: Guardar imagen como artifact
+        run: docker save ${{ env.IMAGE_NAME }}:${{ github.sha }} -o ${{ env.IMAGE_NAME }}.tar
+
+      - name: Subir imagen como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: ${{ env.IMAGE_NAME }}.tar
+
+      # Generar SBOM con sbomify (CycloneDX)
+      - name: Generar SBOM CycloneDX
+        uses: sbomify/github-action@master
+        env:
+          LOCK_FILE: requirements.txt
+          OUTPUT_FILE: sbom.cdx.json
+        continue-on-error: true
+
+      - name: Subir SBOM como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.cdx.json

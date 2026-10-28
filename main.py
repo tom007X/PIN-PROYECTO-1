@@ -1,8 +1,16 @@
 import os
 from app import app
 from flask import jsonify, request
+from prometheus_flask_exporter import PrometheusMetrics
+
 
 # ============================================================
+# Métricas Prometheus
+# ============================================================
+# Expone automáticamente métricas en /metrics
+metrics = PrometheusMetrics(app)
+# ==================================
+# ==========================
 # Almacenamiento en memoria
 # ============================================================
 # Estructura: {id: {"id": int, "nombre": str, "email": str, "dni": str|None}}
@@ -111,5 +119,7 @@ def borrar_cliente(id):
         return jsonify({'error': 'Error al borrar el cliente'}), 500
 
 
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    
