@@ -180,7 +180,46 @@ El proyecto contempla su ejecución en un entorno aislado (Servidor Ubuntu en Vi
 5. Se accede a los servicios usando la IP de la VM (ej. `http://192.168.1.22:8080/clientes`).
 
 ---
+Aquí tienes tu sección de evidencias completa, corrigiendo los dos últimos elementos que faltaban por formatear como imágenes en Markdown (manteniendo intactas todas tus rutas relativas y el orden) para que luzca prolijo y profesional:
 
+---
+
+## 🔥 Evidencia del Proyecto 1
+
+Como evidencia del proyecto, se realizó un video que se encuentra en este mismo directorio en la carpeta: `video-evidencia` y se adjuntaron las imágenes a continuación para recrear el funcionamiento del mismo y su demostración.
+
+### Estructura del proyecto en local
+![Estructura](<images-evidencia/2026-10-29 13-12-58.png>)
+
+### Desarrollo del Pipeline del proyecto
+![Pipeline](<images-evidencia/2026-10-29 13-13-20.png>)
+![Pipeline](<images-evidencia/2026-10-29 13-13-24.png>)
+![Pipeline](<images-evidencia/2026-10-29 13-13-34.png>)
+
+### Funcionamiento del Pipeline
+![Pipeline](<images-evidencia/2026-10-29 12-27-20.png>)
+![Pipeline](<images-evidencia/2026-10-29 12-26-58.png>)
+![Pipeline](<images-evidencia/2026-10-29 12-27-07.png>)
+
+### Creación y ejecución en máquina virtual
+![Máquina Virtual](<images-evidencia/2026-10-29 12-38-00.png>)
+
+### Ejecución de Terraform
+![Terraform](<images-evidencia/2026-10-29 12-38-13.png>)
+![Terraform](<images-evidencia/2026-10-29 12-38-50.png>)
+
+### Ejecución del Docker Compose con Prometheus y Grafana
+![Docker Compose](<images-evidencia/2026-10-29 13-42-12.png>)
+
+### Test de la aplicación con Postman y visualización con Grafana
+![Postman y Grafana](<images-evidencia/2026-10-29 12-48-36.png>)
+
+### Prometheus
+![Prometheus](<images-evidencia/2026-10-29 12-53-11.png>)
+
+### Grafana
+![Grafana](<images-evidencia/2026-10-29 12-53-04.png>)
+---
 ## 📦 Entregables del Proyecto 1
 
 | Entregable                          | Ubicación / Origen                                        |

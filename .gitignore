@@ -31,3 +31,5 @@ terraform/*.tfplan
 .terraform/
 *.tfstate
 *.tfstate.*
+
+.video-evidencia
