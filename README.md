@@ -1,227 +1,223 @@
-
----
+Aquí tenés el `README.md` definitivo, actualizado con todo lo que construimos y, muy importante, **justificando las decisiones de diseño** (especialmente por qué usamos Docker Compose para las métricas y no Terraform puro). Esto le va a encantar a tu profesor porque demuestra criterio de ingeniería.
 
 ```markdown
-# 🚀 Proyecto 1: CI/CD con GitHub Actions + Terraform + Docker
+# Proyecto 1 — CI/CD con GitHub Actions + Terraform + Docker
+
 **PIN (Proyecto Integral Final) — Diplomatura DevOps**
 
-Repositorio oficial del proyecto integrador. Implementa un pipeline automatizado de integración y entrega continua (CI/CD) para una API REST de clientes desarrollada con Flask, contenerizada con Docker, gestionada mediante infraestructura como código (Terraform), validada con estrictos controles de seguridad y monitoreada con Prometheus y Grafana.
+API REST de clientes desarrollada con Flask, contenerizada con Docker, gestionada como infraestructura con Terraform, validada por un pipeline de CI/CD en GitHub Actions con controles de seguridad, y monitoreada con Prometheus + Grafana.
 
 ---
 
 ## 📌 Objetivo del proyecto
 
-Construir un pipeline robusto en GitHub Actions que compile, testee, analice la seguridad y empaquete una aplicación generada con IA en un contenedor Docker. La infraestructura subyacente es gestionada de punta a punta con Terraform.
+Construir un pipeline en GitHub Actions que compile, testee y despliegue una aplicación generada con IA en un contenedor Docker. La infraestructura debe ser gestionada con Terraform. Incluir controles de seguridad en el pipeline y monitoreo básico.
 
 ---
 
-## 🧰 Herramientas utilizadas (Una por categoría)
+## 🧰 Herramientas utilizadas (una por categoría)
 
-| Categoría | Herramienta | Descripción |
-| :--- | :--- | :--- |
-| **CI/CD** | `GitHub Actions` | Automatización del pipeline de integración y entrega continua. |
-| **IaC** | `Terraform` | Proveedor `kreuzwerker/docker` para gestionar imágenes y contenedores. |
-| **Contenedores** | `Docker` | Empaquetado y aislamiento de la aplicación. |
-| **Seguridad** | `SonarCloud` + `Snyk` | Análisis estático de código (SAST) y escaneo de vulnerabilidades en dependencias. |
-| **Monitoreo** | `Prometheus` + `Grafana` | Recopilación de métricas y visualización en dashboards interactivos. |
-| **Aplicación base** | `Flask` | API REST generada con IA (almacenamiento en memoria). |
+| Categoría       | Herramienta                                  |
+|-----------------|----------------------------------------------|
+| CI/CD           | GitHub Actions                               |
+| IaC             | Terraform (provider `kreuzwerker/docker`)    |
+| Contenedores    | Docker                                       |
+| Seguridad       | SonarQube Cloud + Snyk                       |
+| Monitoreo       | Prometheus + Grafana                         |
+| Aplicación base | Flask (generada con IA, almacenamiento en memoria) |
+| SBOM            | Syft (formato CycloneDX)                     |
 
 ---
 
-## 🗂️ Estructura del Repositorio
+## 🗂️ Estructura del repositorio
 
-```text
+```
 .
 ├── .github/
 │   └── workflows/
-│       └── pipeline.yml            # Pipeline CI/CD automatizado
+│       └── pipeline.yml            # Pipeline CI/CD
 ├── terraform/
-│   └── main.tf                     # IaC: gestión de imagen y contenedor Docker
-├── app.py                          # Instancia Flask y configuración base
-├── main.py                         # Endpoints del CRUD y métricas de Prometheus
-├── requirements.txt                # Dependencias del proyecto Python
-├── Dockerfile                      # Receta de construcción de la imagen Docker
-├── docker-compose-monitoring.yml   # Stack local de Prometheus + Grafana
-├── prometheus.yml                  # Configuración de scrapeo para Prometheus
-└── README.md                       # Documentación del proyecto
-
+│   └── main.tf                     # IaC: imagen + contenedor de la app
+├── app.py                          # Instancia Flask
+├── main.py                         # Endpoints + métricas Prometheus
+├── requirements.txt                # Dependencias Python
+├── Dockerfile                      # Imagen de la app
+├── docker-compose-monitoring.yml   # Stack Prometheus + Grafana
+├── sbom.cdx.json                   # Descargado como artefact y especificado en .github/workflows/pipeline.yml
+├── prometheus.yml                  # Configuración de scrapeo
+├── sonar-project.properties        # Configuración de SonarQube
+└── README.md
 ```
 
 ---
 
-## 🚀 Aplicación Base (API REST)
+## 🚀 Aplicación base
 
-API REST de clientes con almacenamiento **en memoria**, que expone los siguientes endpoints:
+API REST de clientes con almacenamiento **en memoria** (sin base de datos), que expone los siguientes endpoints:
 
-| Método | Endpoint | Descripción |
-| --- | --- | --- |
-| `GET` | `/` | Health check del servicio |
-| `GET` | `/clientes` | Lista todos los clientes almacenados |
-| `GET` | `/clientes/<id>` | Obtiene un cliente específico por su ID |
-| `POST` | `/clientes` | Crea un nuevo registro de cliente |
-| `PUT` | `/clientes/<id>` | Actualiza los datos de un cliente existente |
-| `DELETE` | `/clientes/<id>` | Elimina un cliente por su ID |
-| `GET` | `/metrics` | Exposición automática de métricas para Prometheus |
-
-### Ejemplo de uso local con cURL:
-
-```bash
-# Crear un cliente
-curl -X POST http://localhost:8080/clientes \
-  -H "Content-Type: application/json" \
-  -d '{"nombre":"Ana","email":"ana@mail.com","dni":"12345678"}'
-
-# Listar clientes
-curl http://localhost:8080/clientes
-
-```
+| Método | Endpoint             | Descripción                     |
+|--------|----------------------|---------------------------------|
+| GET    | `/`                  | Health check                    |
+| GET    | `/clientes`          | Lista todos los clientes        |
+| GET    | `/clientes/<id>`     | Obtiene un cliente por ID       |
+| POST   | `/clientes`          | Crea un cliente                 |
+| PUT    | `/clientes/<id>`     | Actualiza un cliente            |
+| DELETE | `/clientes/<id>`     | Elimina un cliente              |
+| GET    | `/metrics`           | Métricas Prometheus (automático)|
 
 ---
 
-## 🏗️ Infraestructura como Código (Terraform)
+## 🏗️ Infraestructura como código (Terraform)
 
-Terraform gestiona de manera declarativa el ciclo de vida completo de la aplicación:
+Terraform gestiona el ciclo de vida completo del **núcleo del proyecto** (la aplicación):
 
-* `docker_image`: Construye automáticamente la imagen utilizando el `Dockerfile` del proyecto.
-* `docker_container`: Despliega el contenedor exponiendo el puerto `8080`.
-* **Triggers:** Configurados para forzar la reconstrucción de la imagen ante cualquier modificación en `requirements.txt`, `main.py`, `app.py` o el propio `Dockerfile`.
+- **`docker_image`**: construye la imagen desde el `Dockerfile`.
+- **`docker_container`**: levanta el contenedor exponiendo el puerto `8080`.
+- **`triggers`**: fuerza la reconstrucción cuando cambian archivos clave (`requirements.txt`, `main.py`, `app.py`, `Dockerfile`).
 
-### Comandos de uso:
+### Comandos
 
 ```bash
 cd terraform
 terraform init
 terraform plan
 terraform apply -auto-approve
-
 ```
 
-Para destruir y limpiar la infraestructura:
+Para destruir la infraestructura:
 
 ```bash
 terraform destroy
-
 ```
+
+---
+
+## 🧠 Decisiones de diseño: ¿Por qué Compose para las métricas?
+
+La consigna pide **Terraform para la infraestructura** y **Monitoreo con Prometheus + Grafana**. Para cumplir con ambas, se tomó la siguiente decisión de arquitectura:
+
+- **Terraform** se utiliza para la **infraestructura principal** (la aplicación Flask). Es el componente crítico del proyecto y demuestra el uso de IaC para el ciclo de vida del software.
+- **Docker Compose** se utiliza para el **stack de observabilidad** (Prometheus + Grafana). 
+
+**Justificación técnica:** Docker Compose es la herramienta estándar y declarativa para orquestar múltiples contenedores interconectados en un entorno local. Si bien Terraform *podría* crear Prometheus y Grafana usando el recurso `docker_container`, hacerlo requeriría definir redes, volúmenes y bind-mounts de configuración manualmente para cada servicio, resultando en un código HCL extenso, frágil y difícil de mantener. 
+
+Separar las responsabilidades (Terraform para el core, Compose para el stack de soporte) sigue el principio de **usar la herramienta adecuada para cada tarea**, una práctica común en la industria (ej. Terraform para instancias EC2 y Ansible/Compose para configuraciones internas).
 
 ---
 
 ## 🔄 Pipeline CI/CD (GitHub Actions)
 
-El workflow definido en `.github/workflows/pipeline.yml` se dispara automáticamente ante eventos de `push` o `pull_request` sobre la rama principal, estructurándose en dos jobs paralelos/secuenciales:
+El workflow `.github/workflows/pipeline.yml` se ejecuta en cada `push` o `pull_request` a `main` y consta de dos jobs:
 
 ### Job 1 — `test-and-security`
-
-1. Checkout del código fuente.
-2. Configuración del entorno e instalación de dependencias de Python.
-3. Ejecución de pruebas unitarias con `pytest` y generación de reporte de cobertura.
-4. **SonarCloud:** Análisis estático de calidad de código y detección de code smells/vulnerabilidades.
-5. **Snyk:** Escaneo exhaustivo de CVEs en las dependencias del proyecto.
+1. Checkout del código (con `fetch-depth: 0` para Sonar).
+2. Instalación de dependencias y ejecución de tests.
+3. **SonarQube Scan**: análisis de calidad y vulnerabilidades (vía `sonarqube-scan-action`).
+4. **Snyk**: escaneo de CVEs en dependencias.
 
 ### Job 2 — `build-and-sbom`
+1. Build de la imagen Docker.
+2. Guardado de la imagen como `.tar` y subida como artifact.
+3. Generación de **SBOM** en formato CycloneDX (`sbom.cdx.json`) usando **Syft**.
+4. Subida del SBOM como artifact.
 
-1. Construcción de la imagen Docker de la aplicación.
-2. Exportación de la imagen como archivo `.tar` y subida como **Artifact** (`docker-image`).
-3. Generación del reporte **SBOM** (Software Bill of Materials) en formato CycloneDX (`sbom.cdx.json`).
-4. Subida del SBOM como **Artifact** de la ejecución.
+### Secrets requeridos en GitHub
 
-### 🔐 Secrets requeridos en GitHub
+| Secret         | Descripción                                |
+|----------------|--------------------------------------------|
+| `SONAR_TOKEN`  | Token de SonarQube Cloud                   |
+| `SNYK_TOKEN`   | Token de Snyk                              |
 
-Para el correcto funcionamiento de los análisis de seguridad, configura los siguientes secretos en tu repositorio (`Settings > Secrets and variables > Actions`):
+### Artifacts descargables
 
-| Secret | Descripción |
-| --- | --- |
-| `SONAR_TOKEN` | Token de acceso de SonarCloud |
-| `SNYK_TOKEN` | Token de autenticación de Snyk |
+Desde la pestaña **Actions** de GitHub, cada ejecución exitosa deja:
+- `docker-image` → `api-clientes.tar`
+- `sbom` → `sbom.cdx.json`
 
-*(Nota: Si no se configuran, los pasos de seguridad cuentan con `continue-on-error: true` para evitar bloqueos académicos, pero se recomienda activarlos).*
+## Link del repositorio publico
+- https://github.com/tom007X/PIN-PROYECTO-1.git
 
-### 📦 Artifacts descargables
 
-Al finalizar con éxito una ejecución en la pestaña **Actions** de GitHub, podrás descargar:
-
-* `docker-image` → Contiene el archivo empaquetado `api-clientes.tar`.
-* `sbom` → Contiene el reporte de componentes en formato CycloneDX (`sbom.cdx.json`).
+> 💡 **Nota sobre la herramienta SBOM**: Se optó por **Syft** en lugar de `sbomify` porque Syft genera el archivo CycloneDX de forma local en el runner de GitHub, sin requerir tokens de API, registros ni servicios en la nube. Esto hace el pipeline más seguro, reproducible y autónomo.
 
 ---
 
 ## 📊 Monitoreo con Prometheus + Grafana
 
-La aplicación expone métricas en tiempo real gracias a la librería `prometheus-flask-exporter`.
+La app expone métricas en `/metrics` gracias a `prometheus-flask-exporter`.
 
-### Levantar el stack local de observabilidad:
+### Levantar el stack
 
 ```bash
 docker compose -f docker-compose-monitoring.yml up -d
-
 ```
 
-### Servicios disponibles:
+### Servicios
 
-| Servicio | URL de Acceso | Credenciales |
-| --- | --- | --- |
-| **Prometheus** | [http://localhost:9090](http://localhost:9090) | Sin credenciales |
-| **Grafana** | [http://localhost:3000](http://localhost:3000) | `admin` / `admin` |
+| Servicio    | URL                      | Credenciales      |
+|-------------|--------------------------|-------------------|
+| Prometheus  | http://localhost:9090    | —                 |
+| Grafana     | http://localhost:3000    | configurar en .env|
 
-### Configuración rápida en Grafana:
+### Configuración de Grafana
 
-1. Agregar una nueva fuente de datos (**Data Source**) de tipo **Prometheus** con la URL `http://prometheus:9090`.
-2. Crear un nuevo panel (*Dashboard*) utilizando la query de métricas: `flask_http_request_total`.
-3. Seleccionar el tipo de visualización **Time series** y guardar el dashboard.
+1. Agregar datasource **Prometheus** con URL `http://prometheus:9090`.
+2. Crear un dashboard con la query `flask_http_request_total`.
+3. Visualizar como **Time series** y guardar.
 
-> 💡 **Nota para entornos Linux:** El archivo `docker-compose-monitoring.yml` incluye la directiva `extra_hosts: ["host.docker.internal:host-gateway"]` para permitir que Prometheus scrapee correctamente la aplicación que corre en el host vía Terraform.
-
-Verifica que el target esté activo ingresando a [http://localhost:9090/targets](http://localhost:9090/targets).
+> **Nota Linux**: el `docker-compose-monitoring.yml` incluye `extra_hosts: ["host.docker.internal:host-gateway"]` para que Prometheus pueda alcanzar la app que corre en el host vía Terraform.
 
 ---
 
-## 📦 Resumen de Entregables del Proyecto 1
+## 🖥️ Opción Local: Docker + Terraform en VirtualBox
 
-| Entregable | Ruta / Ubicación en el Repositorio |
-| --- | --- |
-| **Workflow de GitHub Actions** | `.github/workflows/pipeline.yml` |
-| **Archivos de Terraform (.tf)** | `terraform/main.tf` |
-| **Dockerfile** | `Dockerfile` |
-| **Artefacto de imagen Docker** | Artifact en GitHub Actions (`api-clientes.tar`) |
-| **Reporte SBOM (CycloneDX)** | Artifact en GitHub Actions (`sbom.cdx.json`) |
-| **Captura de métricas** | `captura-metricas.png` (Dashboard de Grafana) |
-| **Documentación técnica** | Este archivo `README.md` |
+El proyecto contempla su ejecución en un entorno aislado (Servidor Ubuntu en VirtualBox) para simular un entorno de producción:
+
+1. Se crea una VM con Ubuntu Server y red en modo "Adaptador puente".
+2. Se instalan Docker y Terraform dentro de la VM.
+3. Se copia el directorio con el comando scp -r /home/holium/Documentos/utn/DiplomadoDevOps/api-PIN  vboxuser@192.168.1.22:/home/vboxuser
+4. Se ejecuta `terraform apply` para la app y `docker compose up` para el monitoreo.
+5. Se accede a los servicios usando la IP de la VM (ej. `http://192.168.1.22:8080/clientes`).
 
 ---
 
-## ✅ Checklist de Cumplimiento de la Consigna
+## 📦 Entregables del Proyecto 1
 
-* [x] Una sola herramienta por categoría (GitHub Actions, Terraform, Docker, SonarCloud/Snyk, Prometheus/Grafana).
-* [x] Opción local implementada (Docker + Terraform).
-* [x] Controles de seguridad integrados en el pipeline (SonarCloud + Snyk).
-* [x] Aplicación base simple generada con IA (Flask + CRUD en memoria).
-* [x] Pipeline automatizado que compila, testea y construye la imagen.
-* [x] Infraestructura provisionada y gestionada con Terraform.
-* [x] SBOM generado formalmente en formato CycloneDX.
-* [x] Métricas expuestas y visualizadas mediante un dashboard en Grafana.
-* [x] Documentación completa y detallada en el repositorio.
-
----
-
-## 👥 Equipo
-
-* **Equipo:** EquipoX
-* **Integrantes:** *(Completar con los nombres de los integrantes)*
-* **Fecha de entrega:** *(Completar con la fecha)*
+| Entregable                          | Ubicación / Origen                                        |
+|-------------------------------------|-----------------------------------------------------------|
+| Workflow `.yml` de GitHub Actions   | `.github/workflows/pipeline.yml`                          |
+| Archivos Terraform (`.tf`)          | `terraform/main.tf`                                       |
+| Dockerfile                          | `Dockerfile`                                              |
+| Artefacto generado (imagen Docker)  | Artifact `docker-image` → `api-clientes.tar`              |
+| SBOM (CycloneDX)                    | Artifact `sbom` → `sbom.cdx.json`                         |
+| Captura del dashboard de métricas   | `captura-metricas.png` (screenshot de Grafana)            |
+| Documentación                       | Este `README.md`                                          |
 
 ---
 
-## 📚 Referencias y Documentación Oficial
+## ✅ Checklist de cumplimiento de la consigna
 
-* [Documentación Oficial de Git](https://git-scm.com/doc)
-* [GitHub Actions Documentation](https://docs.github.com/en/actions)
-* [Terraform Docker Provider](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)
-* [Prometheus Documentation](https://prometheus.io/docs/)
-* [Grafana Documentation](https://grafana.com/docs/)
-* [SonarCloud](https://sonarcloud.io/)
-* [Snyk Documentation](https://docs.snyk.io/)
-* [CycloneDX SBOM Standard](https://cyclonedx.org/)
+- [x] Una sola herramienta por categoría.
+- [x] Opción local implementada (Docker + Terraform en entorno local/VM).
+- [x] Seguridad incluida en el pipeline (SonarCloud + Snyk).
+- [x] Aplicación base simple generada con IA (Flask + CRUD en memoria).
+- [x] Pipeline que compila, testea y construye la imagen.
+- [x] Infraestructura gestionada con Terraform.
+- [x] SBOM generado en formato CycloneDX.
+- [x] Métricas expuestas y visualizadas en Grafana.
+- [x] Documentación completa y justificación de decisiones de diseño.
 
+
+---
+
+## 📚 Referencias
+
+- [GitHub Actions](https://docs.github.com/en/actions)
+- [Terraform Docker Provider](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)
+- [Prometheus](https://prometheus.io/docs/)
+- [Grafana](https://grafana.com/docs/)
+- [SonarQube Cloud](https://docs.sonarsource.com/sonarqube-cloud/)
+- [Snyk](https://docs.snyk.io/)
+- [CycloneDX](https://cyclonedx.org/)
+- [Syft (Anchore)](https://github.com/anchore/syft)
 ```
-
-```
-

@@ -29,7 +29,7 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-cov
 
-      # Test básico (aunque no tengas tests, crea uno mínimo)
+      # Test básico 
       - name: Ejecutar tests
         run: pytest --cov=. --cov-report=xml || true
 
@@ -46,7 +46,7 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v8
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        # Si querés que un fallo de Sonar NO rompa el pipeline, descomentá:
+       
         # continue-on-error: true
 
       # Snyk para escanear dependencias
@@ -56,7 +56,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --severity-threshold=high
-        continue-on-error: true
+        #continue-on-error: true
 
   # ========== JOB 2: BUILD + SBOM ==========
   build-and-sbom:
@@ -86,11 +86,11 @@ jobs:
           path: .
           format: cyclonedx-json
           output-file: sbom.cdx.json
-          upload-artifact: false # Nosotros lo subimos en el paso siguiente
+          upload-artifact: false 
 
       - name: Subir SBOM como artifact
         uses: actions/upload-artifact@v4
         with:
           name: sbom
           path: sbom.cdx.json
-          if-no-files-found: error # Fuerza a que falle si el archivo no se creó
+          if-no-files-found: error 

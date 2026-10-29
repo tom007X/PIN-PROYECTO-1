@@ -1,0 +1,795 @@
+{
+    "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.6",
+    "serialNumber": "urn:uuid:9f1d0bef-0932-4011-9fe3-27c9882c5257",
+    "version": 1,
+    "metadata": {
+        "timestamp": "2026-10-28T18:03:07Z",
+        "tools": {
+            "components": [
+                {
+                    "type": "application",
+                    "author": "anchore",
+                    "name": "syft",
+                    "version": "1.42.3"
+                }
+            ]
+        },
+        "component": {
+            "bom-ref": "af63bd4c8601b7f1",
+            "type": "file",
+            "name": "."
+        }
+    },
+    "components": [
+        {
+            "bom-ref": "pkg:github/sonarsource/sonarqube-scan-action@v8?package-id=18f362c8b50417f5",
+            "type": "library",
+            "name": "SonarSource/sonarqube-scan-action",
+            "version": "v8",
+            "cpe": "cpe:2.3:a:SonarSource\\/sonarqube-scan-action:SonarSource\\/sonarqube-scan-action:v8:*:*:*:*:*:*:*",
+            "purl": "pkg:github/SonarSource/sonarqube-scan-action@v8",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "github-actions-usage-cataloger"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "github-action"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "github-actions-use-statement"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:SonarSource\\/sonarqube-scan-action:SonarSource\\/sonarqube_scan_action:v8:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:SonarSource\\/sonarqube_scan_action:SonarSource\\/sonarqube-scan-action:v8:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:SonarSource\\/sonarqube_scan_action:SonarSource\\/sonarqube_scan_action:v8:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:SonarSource\\/sonarqube-scan:SonarSource\\/sonarqube-scan-action:v8:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:SonarSource\\/sonarqube-scan:SonarSource\\/sonarqube_scan_action:v8:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:SonarSource\\/sonarqube_scan:SonarSource\\/sonarqube-scan-action:v8:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:SonarSource\\/sonarqube_scan:SonarSource\\/sonarqube_scan_action:v8:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:SonarSource\\/sonarqube:SonarSource\\/sonarqube-scan-action:v8:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:SonarSource\\/sonarqube:SonarSource\\/sonarqube_scan_action:v8:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/.github/workflows/pipeline.yml"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:github/actions/cache@v4?package-id=c7224ec9d87b1949",
+            "type": "library",
+            "name": "actions/cache",
+            "version": "v4",
+            "cpe": "cpe:2.3:a:actions\\/cache:actions\\/cache:v4:*:*:*:*:*:*:*",
+            "purl": "pkg:github/actions/cache@v4",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "github-actions-usage-cataloger"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "github-action"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "github-actions-use-statement"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/.github/workflows/pipeline.yml"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:github/actions/checkout@v4?package-id=7a6e46f03fa9b06c",
+            "type": "library",
+            "name": "actions/checkout",
+            "version": "v4",
+            "cpe": "cpe:2.3:a:actions\\/checkout:actions\\/checkout:v4:*:*:*:*:*:*:*",
+            "purl": "pkg:github/actions/checkout@v4",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "github-actions-usage-cataloger"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "github-action"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "github-actions-use-statement"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/.github/workflows/pipeline.yml"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:github/actions/setup-python@v5?package-id=26534ce825f1569a",
+            "type": "library",
+            "name": "actions/setup-python",
+            "version": "v5",
+            "cpe": "cpe:2.3:a:actions\\/setup-python:actions\\/setup-python:v5:*:*:*:*:*:*:*",
+            "purl": "pkg:github/actions/setup-python@v5",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "github-actions-usage-cataloger"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "github-action"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "github-actions-use-statement"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/setup-python:actions\\/setup_python:v5:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/setup_python:actions\\/setup-python:v5:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/setup_python:actions\\/setup_python:v5:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/setup:actions\\/setup-python:v5:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/setup:actions\\/setup_python:v5:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/.github/workflows/pipeline.yml"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:github/actions/upload-artifact@v4?package-id=ee2bd33f9a3ea995",
+            "type": "library",
+            "name": "actions/upload-artifact",
+            "version": "v4",
+            "cpe": "cpe:2.3:a:actions\\/upload-artifact:actions\\/upload-artifact:v4:*:*:*:*:*:*:*",
+            "purl": "pkg:github/actions/upload-artifact@v4",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "github-actions-usage-cataloger"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "github-action"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "github-actions-use-statement"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/upload-artifact:actions\\/upload_artifact:v4:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/upload_artifact:actions\\/upload-artifact:v4:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/upload_artifact:actions\\/upload_artifact:v4:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/upload:actions\\/upload-artifact:v4:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:actions\\/upload:actions\\/upload_artifact:v4:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/.github/workflows/pipeline.yml"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:github/anchore/sbom-action@v0?package-id=6668df17515cc2bd",
+            "type": "library",
+            "name": "anchore/sbom-action",
+            "version": "v0",
+            "cpe": "cpe:2.3:a:anchore\\/sbom-action:anchore\\/sbom-action:v0:*:*:*:*:*:*:*",
+            "purl": "pkg:github/anchore/sbom-action@v0",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "github-actions-usage-cataloger"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "github-action"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "github-actions-use-statement"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:anchore\\/sbom-action:anchore\\/sbom_action:v0:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:anchore\\/sbom_action:anchore\\/sbom-action:v0:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:anchore\\/sbom_action:anchore\\/sbom_action:v0:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:anchore\\/sbom:anchore\\/sbom-action:v0:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:anchore\\/sbom:anchore\\/sbom_action:v0:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/.github/workflows/pipeline.yml"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:pypi/flask@2.3.3?package-id=0bcf7df868b2689b",
+            "type": "library",
+            "name": "flask",
+            "version": "2.3.3",
+            "cpe": "cpe:2.3:a:python-flask:python-flask:2.3.3:*:*:*:*:*:*:*",
+            "purl": "pkg:pypi/flask@2.3.3",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "python-package-cataloger"
+                },
+                {
+                    "name": "syft:package:language",
+                    "value": "python"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "python"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "python-pip-requirements-entry"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-flask:python_flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_flask:python-flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_flask:python_flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:python-flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:python_flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:flask:python-flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:flask:python_flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-flask:flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_flask:flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:flask:flask:2.3.3:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/requirements.txt"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:pypi/prometheus-flask-exporter@0.23.1?package-id=7b5a049c6dfdda6c",
+            "type": "library",
+            "name": "prometheus-flask-exporter",
+            "version": "0.23.1",
+            "cpe": "cpe:2.3:a:python-prometheus-flask-exporter:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*",
+            "purl": "pkg:pypi/prometheus-flask-exporter@0.23.1",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "python-package-cataloger"
+                },
+                {
+                    "name": "syft:package:language",
+                    "value": "python"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "python"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "python-pip-requirements-entry"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus-flask-exporter:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus_flask_exporter:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus_flask_exporter:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus-flask-exporter:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus-flask-exporter:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus_flask_exporter:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus_flask_exporter:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus-flask-exporter:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus-flask-exporter:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus_flask_exporter:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus_flask_exporter:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus-flask:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus-flask:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus_flask:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus_flask:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus-flask-exporter:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus-flask-exporter:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus_flask_exporter:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus_flask_exporter:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus-flask:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus-flask:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus_flask:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus_flask:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus-flask:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus-flask:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus_flask:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus_flask:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-prometheus:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_prometheus:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus-flask:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus-flask:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus_flask:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus_flask:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:python-prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:python_prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:prometheus:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:prometheus-flask-exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:prometheus_flask_exporter:0.23.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/requirements.txt"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:pypi/python-dotenv@1.0.1?package-id=98a556c5334cf463",
+            "type": "library",
+            "name": "python-dotenv",
+            "version": "1.0.1",
+            "cpe": "cpe:2.3:a:python-dotenv:python-dotenv:1.0.1:*:*:*:*:*:*:*",
+            "purl": "pkg:pypi/python-dotenv@1.0.1",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "python-package-cataloger"
+                },
+                {
+                    "name": "syft:package:language",
+                    "value": "python"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "python"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "python-pip-requirements-entry"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-dotenv:python_dotenv:1.0.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_dotenv:python-dotenv:1.0.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_dotenv:python_dotenv:1.0.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:python-dotenv:1.0.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:python_dotenv:1.0.1:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/requirements.txt"
+                }
+            ]
+        },
+        {
+            "bom-ref": "6243ce2fc8464a04",
+            "type": "library",
+            "name": "registry.terraform.io/kreuzwerker/docker",
+            "version": "3.9.0",
+            "cpe": "cpe:2.3:a:kreuzwerker:docker:3.9.0:*:*:*:*:*:*:*",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "terraform-lock-cataloger"
+                },
+                {
+                    "name": "syft:package:language",
+                    "value": "go"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "terraform"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "terraform-lock-provider-entry"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/terraform/.terraform.lock.hcl"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:github/snyk/actions@master?package-id=b457f9dd9ca30220#python",
+            "type": "library",
+            "name": "snyk/actions/python",
+            "version": "master",
+            "cpe": "cpe:2.3:a:snyk\\/actions\\/python:snyk\\/actions\\/python:master:*:*:*:*:*:*:*",
+            "purl": "pkg:github/snyk/actions@master#python",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "github-actions-usage-cataloger"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "github-action"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "github-actions-use-statement"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/.github/workflows/pipeline.yml"
+                }
+            ]
+        },
+        {
+            "bom-ref": "pkg:pypi/werkzeug@2.3.7?package-id=61b0c91ab035e964",
+            "type": "library",
+            "name": "werkzeug",
+            "version": "2.3.7",
+            "cpe": "cpe:2.3:a:python-werkzeug:python-werkzeug:2.3.7:*:*:*:*:*:*:*",
+            "purl": "pkg:pypi/werkzeug@2.3.7",
+            "properties": [
+                {
+                    "name": "syft:package:foundBy",
+                    "value": "python-package-cataloger"
+                },
+                {
+                    "name": "syft:package:language",
+                    "value": "python"
+                },
+                {
+                    "name": "syft:package:type",
+                    "value": "python"
+                },
+                {
+                    "name": "syft:package:metadataType",
+                    "value": "python-pip-requirements-entry"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-werkzeug:python_werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_werkzeug:python-werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_werkzeug:python_werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python-werkzeug:werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python_werkzeug:werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:werkzeug:python-werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:werkzeug:python_werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:python-werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:python_werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:werkzeug:werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:cpe23",
+                    "value": "cpe:2.3:a:python:werkzeug:2.3.7:*:*:*:*:*:*:*"
+                },
+                {
+                    "name": "syft:location:0:path",
+                    "value": "/requirements.txt"
+                }
+            ]
+        },
+        {
+            "bom-ref": "d85cab432ed46da3",
+            "type": "file",
+            "name": "/home/runner/work/PIN-PROYECTO-1/PIN-PROYECTO-1/.github/workflows/pipeline.yml",
+            "hashes": [
+                {
+                    "alg": "SHA-1",
+                    "content": "4b02f35ad4fbce2b9b5437c1060b48bcf18cb1b1"
+                },
+                {
+                    "alg": "SHA-256",
+                    "content": "11677e5f731299eaae467aa72f447da70069f18d9b16c34c189e02912d2d85b5"
+                }
+            ]
+        },
+        {
+            "bom-ref": "26ca2b7dc025d550",
+            "type": "file",
+            "name": "/home/runner/work/PIN-PROYECTO-1/PIN-PROYECTO-1/requirements.txt",
+            "hashes": [
+                {
+                    "alg": "SHA-1",
+                    "content": "5f7039b6aabe4dad5f6f659e8e5af5470909d605"
+                },
+                {
+                    "alg": "SHA-256",
+                    "content": "f9cf3c318e2a5d05db6827d4804774d94cbb5253f0ab0664b9267b596721e512"
+                }
+            ]
+        },
+        {
+            "bom-ref": "8fc51490884d4da2",
+            "type": "file",
+            "name": "/home/runner/work/PIN-PROYECTO-1/PIN-PROYECTO-1/terraform/.terraform.lock.hcl",
+            "hashes": [
+                {
+                    "alg": "SHA-1",
+                    "content": "e4607d378bcc91e86a89ddb5db77919fedf98e62"
+                },
+                {
+                    "alg": "SHA-256",
+                    "content": "01f7a40b8129ce351301bb0bb2e77f431bad0af93c5258f93e94532e25652bf3"
+                }
+            ]
+        }
+    ]
+}
